@@ -2,14 +2,13 @@
 
 PHP笔记
 
-> php链接数据库
+> php链接数据库//init.php
 
 ```
 <?php
    $conn = mysqli_connect('127.0.0.1','root','root','myapp');
    $sql = "SET NAMES UTF8";
    mysqli_query($conn,$sql);
-
 ?>
 ```
 
@@ -40,6 +39,14 @@ $result = mysqli_query($conn,$sql);
  }
 
 ?>
+```
+```
+<form action="reg.php" method ="post">
+	<input required type="text" name="uname">
+	<input  type="text" name="upassword">
+	<input type="" name="utcode">
+	<input type="submit">
+</form>
 ```
 
 > 查询表中所有字段数据
@@ -84,6 +91,13 @@ if($result===true){
 }
 
 ?>
+```
+```
+<form action="gai.php">
+	<input type="" name="uname">
+	<input type="" name="upassword">
+	<input type="submit">
+</form>
 ```
 
 
