@@ -154,7 +154,41 @@ echo json_encode(array('code' => 1000, 'msg' =>md5(str_rand())));
 
 
 
+> 查询每日，每周，每月数据
 
+```
+<?php
+require('init.php');
+//2:发送sql语句
+ini_set('date.timezone','Asia/Shanghai');
+$raw_success = json_encode(array('code' => 1000, 'msg' => 'suc'));
+$raw_fail = json_encode(array('code' => 1001, 'msg' => 'err'));
+$start=date('Y-m-d 00:00:00');
+$end=date('Y-m-d H:i:s');
+//$sql = "select * from myuser WHERE `utime` >= unix_timestamp('$start') AND `utime` <= unix_timestamp('$end')";//查询当天：
+
+//$sql="SELECT * FROM `myuser` WHERE YEARWEEK( FROM_UNIXTIME( `utime`,'%Y-%m-%d %H:%i:%s') ,1) = YEARWEEK( now( ),1 )";//查询本周：
+
+
+$starty=date('Y-m-01 00:00:00');
+$endy=date('Y-m-d H:i:s');
+$sql="SELECT * FROM `myuser` WHERE `utime` >= unix_timestamp('”.$starty.”') AND `utime` <= unix_timestamp('$endy')";//查询本月：
+
+
+
+$result = mysqli_query($conn,$sql);
+ //3:判断返回结果
+
+$rows= mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+if($rows){
+	echo json_encode(array('code' => 1000, 'result' => $rows));
+}else{
+	echo json_encode(array('code' => 1001, 'msg' => 'err'));
+}
+
+?>
+```
 
 
 
