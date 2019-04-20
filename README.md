@@ -1,5 +1,19 @@
-# PHP
+# PHP操作mysql实现增删改查
+
 PHP笔记
+
+> php链接数据库
+
+```
+<?php
+   $conn = mysqli_connect('127.0.0.1','root','root','myapp');
+   $sql = "SET NAMES UTF8";
+   mysqli_query($conn,$sql);
+
+?>
+```
+
+
 
 > 增加数据
 
