@@ -125,6 +125,38 @@ $result = mysqli_query($conn,$sql);
 ?>
 ```
 
+> php随机生成32位字符串转换成md5
+
+```
+<?php
+function str_rand($length = 32, $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+    if(!is_int($length) || $length < 0) {
+        return false;
+    }
+    $string = '';
+    for($i = $length; $i > 0; $i--) {
+        $string .= $char[mt_rand(0, strlen($char) - 1)];
+    }
+
+    return $string;
+}
+
+echo json_encode(array('code' => 1000, 'msg' =>md5(str_rand())));
+?> 
+```
+
+```
+{
+  "code": 1000,
+  "msg": "4dfce12ee1aa2591c281810ef3f4021f"
+}
+```
+
+
+
+
+
+
 
 
 
