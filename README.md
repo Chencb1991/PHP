@@ -101,6 +101,32 @@ if($result===true){
 ```
 
 
+> 删除表中数据//del.php?uid
+
+```
+<?php
+require('init.php');
+//2:发送sql语句
+$raw_success = json_encode(array('code' => 1000, 'msg' => 'suc'));
+$raw_fail = json_encode(array('code' => 1001, 'msg' => 'err'));
+
+@$uid = $_REQUEST['uid'] or die($raw_fail);
+$sql = "delete  from myuser where uid = '$uid'";
+$result = mysqli_query($conn,$sql);
+ //3:判断返回结果
+
+ if($result===true){
+   echo $raw_success;
+
+ }else{
+   echo $raw_fail;
+ }
+
+?>
+```
+
+
+
 
 
 
