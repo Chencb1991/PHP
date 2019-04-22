@@ -40,6 +40,7 @@ $result = mysqli_query($conn,$sql);
 
 ?>
 ```
+
 ```
 <form action="reg.php" method ="post">
 	<input required type="text" name="uname">
@@ -48,6 +49,46 @@ $result = mysqli_query($conn,$sql);
 	<input type="submit">
 </form>
 ```
+
+> 注册查重
+
+```
+<?php
+require('init.php');
+$raw_success = json_encode(array('code' => 1000, 'msg' => '用户注册成功'));
+$raw_fail = json_encode(array('code' => 1001, 'msg' => '用户注册失败'));
+$raw_fail2 = json_encode(array('code' => 1010, 'msg' => '用户已存在'));
+
+@$uname = $_REQUEST['uname'] or die($raw_fail);
+@$upassword = $_REQUEST['upassword'] or die($raw_fail);
+@$utcode = $_REQUEST['utcode'] or die($raw_fail);
+$utime = time();
+
+$sql = "select uname from myuser where uname = '$uname'";
+$result = mysqli_query($conn,$sql);
+
+$row = mysqli_fetch_row($result);
+
+if(json_encode($row)==='null'){
+	$sql = "INSERT INTO myuser VALUES(null,'$uname','','$upassword','$utcode','$utime',0)";
+	$result = mysqli_query($conn,$sql);
+	 //3:判断返回结果
+	 if($result===true){
+	   echo $raw_success;
+
+	 }else{
+	   echo $raw_fail;
+	 }
+}else{
+	echo $raw_fail2;
+}
+
+?>
+```
+
+
+
+
 
 > 查询表中所有字段数据
 
