@@ -165,16 +165,16 @@ $raw_success = json_encode(array('code' => 1000, 'msg' => 'suc'));
 $raw_fail = json_encode(array('code' => 1001, 'msg' => 'err'));
 $start=date('Y-m-d 00:00:00');
 $end=date('Y-m-d H:i:s');
-//$sql = "select * from myuser WHERE `utime` >= unix_timestamp('$start') AND `utime` <= unix_timestamp('$end')";//查询当天：
+//$sql = "select * from myuser WHERE `utime` >= unix_timestamp('$start') AND `utime` <= unix_timestamp('$end')";//查询当天数据：
 
 //$sql = "select count(*) from myuser WHERE `utime` >= unix_timestamp('$start') AND `utime` <= unix_timestamp('$end')";//查询当天数量：
-
-//$sql="SELECT * FROM `myuser` WHERE YEARWEEK( FROM_UNIXTIME( `utime`,'%Y-%m-%d %H:%i:%s') ,1) = YEARWEEK( now( ),1 )";//查询本周：
+//$sql = "select FROM_UNIXTIME(utime,'%Y-%m-%d') as days,count(*) count from myuser group by days"; //统计每日总数，为空不补0
+//$sql="SELECT * FROM `myuser` WHERE YEARWEEK( FROM_UNIXTIME( `utime`,'%Y-%m-%d %H:%i:%s') ,1) = YEARWEEK( now( ),1 )";//查询本周数据：
 
 
 $starty=date('Y-m-01 00:00:00');
 $endy=date('Y-m-d H:i:s');
-$sql="SELECT * FROM `myuser` WHERE `utime` >= unix_timestamp('”.$starty.”') AND `utime` <= unix_timestamp('$endy')";//查询本月：
+$sql="SELECT * FROM `myuser` WHERE `utime` >= unix_timestamp('”.$starty.”') AND `utime` <= unix_timestamp('$endy')";//查询本月数据：
 
 
 
