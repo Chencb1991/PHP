@@ -167,6 +167,8 @@ $start=date('Y-m-d 00:00:00');
 $end=date('Y-m-d H:i:s');
 //$sql = "select * from myuser WHERE `utime` >= unix_timestamp('$start') AND `utime` <= unix_timestamp('$end')";//查询当天：
 
+//$sql = "select count(*) from myuser WHERE `utime` >= unix_timestamp('$start') AND `utime` <= unix_timestamp('$end')";//查询当天数量：
+
 //$sql="SELECT * FROM `myuser` WHERE YEARWEEK( FROM_UNIXTIME( `utime`,'%Y-%m-%d %H:%i:%s') ,1) = YEARWEEK( now( ),1 )";//查询本周：
 
 
